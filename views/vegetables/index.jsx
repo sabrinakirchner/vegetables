@@ -7,9 +7,9 @@ class Index extends React.Component{
             <div>
                 <h1>Vegetables Index Page </h1>
                 <ul>
-                    {vegetables.map((vegetable, i)=> (
-                        <li key={i}>
-                            <a href={'/vegetables/${i}'}>{vegetable.name}</a>
+                    {vegetables.map((vegetable)=> (
+                        <li key={vegetable._id}>
+                            <a href={'/vegetables/${vegetable._id}'}>{vegetable.name}</a>
                         </li>
                     ))}
                 </ul>

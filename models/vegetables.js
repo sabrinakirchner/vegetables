@@ -1,15 +1,11 @@
-const vegetables = [
-    {
-        name:'Carrot',
-        color:'orange',
-        readyToEat:true,
-    },
-    {
-        name:'brocoli',
-        color:'green',
-        readyToEat:false,
-    },
-   //may add more latter 
-];
+const mongoose = require('mongoose');
 
-module.exports = vegetables; 
+const vegetableSchema = new mongoose.Schema({
+    name: String,
+    color: String,
+    readyToEat:Boolean,
+});
+
+const Vegetable = mongoose.model('Vegetable', vegetableSchema);
+
+module.exports = vegetable; 

@@ -5,21 +5,30 @@ const router = express.Router();
 const vegetables = require('../models/vegetables');
 
 //index 
-router('/vegetables', (req,res) =>{
-    res.remder('vegetables/Index',{vegetables}); 
+router.get('/vegetables', async (req,res) =>{
+    const vegetables = await Vegetable.find();
+    res.render('vegetables/Index', { vegetables }); 
 });
 
 //show 
-router.get('/vegetables/:indexOfVegetablesArray', (req,res) => {
-    const vegetable = vegetables[req.params.indexOfVegetablesArray];
-    res.render('vegetable/show',{vegetable});
+router.get('/vegetables/:id', async (req, res) => {
+    const vegetable = await Vegetable.findById(req.params.id);
+    res.render('vegetable/Show',{ vegetable });
 });
 
+//create route
+router.post('/vegetables', async (req, res) =>{
+    await Vegetable.create(req.body);
+    res.redirect('/vegetables');
+})
+
+
+
 //new 
-route.get('vegetables/new', (req,res) =>{
+router.get('vegetables/new', (req,res) =>{
     vegetables.push(req.body);
     console.log(vegetables);
     res.redirect('vegetables');
 });
 
-module.expoerts = router; 
+module.exports = router; 
